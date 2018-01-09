@@ -11,6 +11,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/serverStart"
+            android:text="Air Traffic Management System | © Kieron McAuley-Kinchin"
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/serverStart"
             android:layout_width="match_parent"
@@ -18,15 +28,14 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
             android:text="Start Server"
-            android:onClick="StartServer"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintBottom_toTopOf="@+id/clientOneStart"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/clientOneStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
