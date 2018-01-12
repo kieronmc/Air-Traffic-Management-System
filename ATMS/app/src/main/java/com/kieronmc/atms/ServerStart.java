@@ -1,5 +1,7 @@
 package com.kieronmc.atms;
 
+import com.kieronmc.atms.server.*;
+
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +10,8 @@ import android.widget.TextView;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.ServerSocket;
@@ -73,20 +77,32 @@ public class ServerStart extends Activity {
 
                 while (true) {
                     socket = serverSocket.accept();
-                    dataInputStream = new DataInputStream(
-                            socket.getInputStream());
-                    dataOutputStream = new DataOutputStream(
-                            socket.getOutputStream());
+                    dataInputStream = new DataInputStream(socket.getInputStream());
+                    dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
                     String messageFromClient = "";
 
                     //If no message sent from client, this code will block the program
                     messageFromClient = dataInputStream.readUTF();
 
+                    String messageAdd = "";
+                    messageAdd = dataInputStream.readUTF();
+
+                    String[] separateCode = messageFromClient.split(":");
+
+                    String codeNum = separateCode[0];
+
+                    String numReturn = CodeDirectory.code(codeNum);
+
+                    String messageSent = separateCode[1];
+
                     count++;
                     message += "#" + count + " from " + socket.getInetAddress()
                             + ":" + socket.getPort() + "\n"
-                            + "Msg from client: " + messageFromClient + "\n";
+                            + "Message Sent Code: " + codeNum + "\n"
+                            + "Msg from client: " + messageSent + "\n"
+                            + "Code: " + messageAdd + "\n"
+                            + "Test return value: " + numReturn + "\n";
 
                     ServerStart.this.runOnUiThread(new Runnable() {
 

@@ -33,13 +33,19 @@
         android:id="@+id/address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="dstAddress" />
+        android:hint="Destination IP Address" />
 
     <EditText
         android:id="@+id/port"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="dstPort" />
+        android:hint="Destination Port" />
+
+    <EditText
+        android:id="@+id/codeField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Action Code (e.g.1001)" />
 
     <Button
         android:id="@+id/connect"

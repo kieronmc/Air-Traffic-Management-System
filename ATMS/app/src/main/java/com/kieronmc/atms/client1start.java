@@ -1,4 +1,5 @@
 package com.kieronmc.atms;
+import com.kieronmc.atms.clientOne.*;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -19,7 +22,7 @@ import java.net.UnknownHostException;
 public class client1start extends Activity {
 
     TextView textResponse;
-    EditText editTextAddress, editTextPort;
+    EditText editTextAddress, editTextPort, code;
     Button buttonConnect, buttonClear;
 
     EditText welcomeMsg;
@@ -36,6 +39,8 @@ public class client1start extends Activity {
         textResponse = (TextView) findViewById(R.id.response);
 
         welcomeMsg = (EditText)findViewById(R.id.welcomemsg);
+
+        code = (EditText)findViewById(R.id.codeField);
 
         buttonConnect.setOnClickListener(buttonConnectOnClickListener);
 
@@ -59,10 +64,11 @@ public class client1start extends Activity {
                 Toast.makeText(client1start.this, "No Welcome Msg sent", Toast.LENGTH_SHORT).show();
             }
 
-            MyClientTask myClientTask = new MyClientTask(editTextAddress
-                    .getText().toString(), Integer.parseInt(editTextPort
-                    .getText().toString()),
-                    tMsg);
+            MyClientTask myClientTask = new MyClientTask(
+                    editTextAddress.getText().toString(),
+                    Integer.parseInt(editTextPort.getText().toString()),
+                    tMsg,
+                    code.getText().toString());
             myClientTask.execute();
         }
     };
@@ -73,11 +79,13 @@ public class client1start extends Activity {
         int dstPort;
         String response = "";
         String msgToServer;
+        String actCode;
 
-        MyClientTask(String addr, int port, String msgTo) {
+        MyClientTask(String addr, int port, String msgTo, String code) {
             dstAddress = addr;
             dstPort = port;
             msgToServer = msgTo;
+            actCode = code;
         }
 
         @Override
@@ -89,12 +97,12 @@ public class client1start extends Activity {
 
             try {
                 socket = new Socket(dstAddress, dstPort);
-                dataOutputStream = new DataOutputStream(
-                        socket.getOutputStream());
+                dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 dataInputStream = new DataInputStream(socket.getInputStream());
 
                 if(msgToServer != null){
                     dataOutputStream.writeUTF(msgToServer);
+                    dataOutputStream.writeUTF(actCode);
                 }
 
                 response = dataInputStream.readUTF();
