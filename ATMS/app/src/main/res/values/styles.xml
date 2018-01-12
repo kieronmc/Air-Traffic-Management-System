@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Start_btn" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/teal300</item>
+        <item name="colorButtonNormal">@color/teal500</item>
+        <item name="android:textColor">#ffffffff</item>
+    </style>
+
+    <style name="Disable_btn" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/grey300</item>
+        <item name="colorButtonNormal">@color/grey300</item>
+    </style>
 </resources>

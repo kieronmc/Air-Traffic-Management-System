@@ -85,24 +85,28 @@ public class ServerStart extends Activity {
                     //If no message sent from client, this code will block the program
                     messageFromClient = dataInputStream.readUTF();
 
+                    String actReturn = CodeDirectory.code(messageFromClient);
+
+
+
+
+
+
                     String messageAdd = "";
                     messageAdd = dataInputStream.readUTF();
 
-                    String[] separateCode = messageFromClient.split(":");
+                    /*String[] separateCode = messageFromClient.split(":");
 
                     String codeNum = separateCode[0];
 
                     String numReturn = CodeDirectory.code(codeNum);
 
-                    String messageSent = separateCode[1];
+                    String messageSent = separateCode[1];*/
 
                     count++;
                     message += "#" + count + " from " + socket.getInetAddress()
                             + ":" + socket.getPort() + "\n"
-                            + "Message Sent Code: " + codeNum + "\n"
-                            + "Msg from client: " + messageSent + "\n"
-                            + "Code: " + messageAdd + "\n"
-                            + "Test return value: " + numReturn + "\n";
+                            + actReturn;
 
                     ServerStart.this.runOnUiThread(new Runnable() {
 

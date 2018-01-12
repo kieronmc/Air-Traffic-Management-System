@@ -23,6 +23,12 @@
         android:text="Air Traffic Management System | © Kieron McAuley-Kinchin"
         android:textStyle="bold" />
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To create action enter = ####:abc" />
+
     <EditText
         android:id="@+id/welcomemsg"
         android:layout_width="match_parent"
