@@ -13,6 +13,9 @@ public class CodeDirectory {
         int codeNumber = Integer.parseInt(codeNum);
         String result;
         switch(codeNumber) {
+            case 0001:
+                result = "true";
+                break;
             case 1001:
                 result = code1001.main(codeNumber,messageSent);
                 break;

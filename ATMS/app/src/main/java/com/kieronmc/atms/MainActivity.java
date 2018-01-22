@@ -16,7 +16,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         Button one = (Button) findViewById(R.id.serverStart);
         one.setOnClickListener(this); // calling onClick() method
-        Button two = (Button) findViewById(R.id.clientOneStart);
+
+
+        Button two = (Button) findViewById(R.id.connect_server);
         two.setOnClickListener(this);
 
     }
@@ -30,9 +32,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(startServerAct);
                 break;
 
-            case R.id.clientOneStart:
-                Intent startClientOneAct = new Intent(MainActivity.this, client1start.class);
-                startActivity(startClientOneAct);
+            case R.id.connect_server:
+                Intent startClientSelect = new Intent(MainActivity.this, client1start.class);       // Changed from connect class
+                startActivity(startClientSelect);
                 break;
 
             default:

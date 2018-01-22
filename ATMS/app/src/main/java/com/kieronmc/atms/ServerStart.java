@@ -1,6 +1,7 @@
 package com.kieronmc.atms;
 
 import com.kieronmc.atms.server.*;
+import com.kieronmc.atms.clientOne.Output;
 
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
@@ -77,36 +78,20 @@ public class ServerStart extends Activity {
 
                 while (true) {
                     socket = serverSocket.accept();
-                    dataInputStream = new DataInputStream(socket.getInputStream());
-                    dataOutputStream = new DataOutputStream(socket.getOutputStream());
+                    dataInputStream = new DataInputStream(
+                            socket.getInputStream());
+                    dataOutputStream = new DataOutputStream(
+                            socket.getOutputStream());
 
                     String messageFromClient = "";
 
                     //If no message sent from client, this code will block the program
                     messageFromClient = dataInputStream.readUTF();
 
-                    String actReturn = CodeDirectory.code(messageFromClient);
-
-
-
-
-
-
-                    String messageAdd = "";
-                    messageAdd = dataInputStream.readUTF();
-
-                    /*String[] separateCode = messageFromClient.split(":");
-
-                    String codeNum = separateCode[0];
-
-                    String numReturn = CodeDirectory.code(codeNum);
-
-                    String messageSent = separateCode[1];*/
-
                     count++;
                     message += "#" + count + " from " + socket.getInetAddress()
                             + ":" + socket.getPort() + "\n"
-                            + actReturn;
+                            + "Msg from client: " + messageFromClient + "\n";
 
                     ServerStart.this.runOnUiThread(new Runnable() {
 

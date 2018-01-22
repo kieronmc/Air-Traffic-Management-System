@@ -29,7 +29,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
             android:text="Start Server"
-            app:layout_constraintBottom_toTopOf="@+id/clientOneStart"
+            app:layout_constraintBottom_toTopOf="@+id/connect_server"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -37,58 +37,16 @@
             android:theme="@style/Start_btn" />
 
         <Button
-            android:id="@+id/clientOneStart"
+            android:id="@+id/connect_server"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Start Client 1"
+            android:text="Connect To Server"
+            android:theme="@style/Start_btn"
             app:layout_constraintBottom_toTopOf="@+id/button3"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:theme="@style/Start_btn" />
+            app:layout_constraintRight_toRightOf="parent" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Start Client 2"
-            app:layout_constraintBottom_toTopOf="@+id/button4"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:theme="@style/Disable_btn" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Start Client 3"
-            app:layout_constraintBottom_toTopOf="@+id/button5"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:theme="@style/Disable_btn" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Start Client 4"
-            app:layout_constraintBottom_toTopOf="@+id/button6"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:theme="@style/Disable_btn" />
-
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Start Client 5"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout_editor_absoluteY="416dp"
-            android:theme="@style/Disable_btn" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

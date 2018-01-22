@@ -42,7 +42,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".AppWelcome"></activity>
+        <activity android:name=".AppWelcome" />
+        <activity android:name=".ClientConnect" />
+        <activity android:name=".ClientSelect" />
+        <activity android:name=".clientOne.Client1Start" />
     </application>
 
 </manifest>

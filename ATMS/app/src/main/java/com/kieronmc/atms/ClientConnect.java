@@ -1,7 +1,7 @@
 package com.kieronmc.atms;
-import com.kieronmc.atms.clientOne.*;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -10,45 +10,37 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kieronmc.atms.clientOne.Client1Start;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 
-public class client1start extends Activity {
+public class ClientConnect extends Activity {
 
     TextView textResponse;
-    EditText editTextAddress, editTextPort, code;
-    Button buttonConnect, buttonClear;
+    EditText editTextAddress, editTextPort;
+    Button buttonConnect;
 
     EditText welcomeMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client1start);
+        setContentView(R.layout.activity_client_connect);
 
         editTextAddress = (EditText) findViewById(R.id.address);
         editTextPort = (EditText) findViewById(R.id.port);
         buttonConnect = (Button) findViewById(R.id.connect);
-        buttonClear = (Button) findViewById(R.id.clear);
         textResponse = (TextView) findViewById(R.id.response);
 
         welcomeMsg = (EditText)findViewById(R.id.welcomemsg);
 
         buttonConnect.setOnClickListener(buttonConnectOnClickListener);
 
-        buttonClear.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                textResponse.setText("");
-            }
-        });
     }
 
     View.OnClickListener buttonConnectOnClickListener = new View.OnClickListener() {
@@ -56,11 +48,7 @@ public class client1start extends Activity {
         @Override
         public void onClick(View arg0) {
 
-            String tMsg = welcomeMsg.getText().toString();
-            if(tMsg.equals("")){
-                tMsg = null;
-                Toast.makeText(client1start.this, "No Welcome Msg sent", Toast.LENGTH_SHORT).show();
-            }
+            String tMsg = "0001:Connect";
 
             MyClientTask myClientTask = new MyClientTask(
                     editTextAddress.getText().toString(),
@@ -75,12 +63,12 @@ public class client1start extends Activity {
         String dstAddress;
         int dstPort;
         String response = "";
-        String msgToServer;;
+        String msgToServer;
 
         MyClientTask(String addr, int port, String msgTo) {
             dstAddress = addr;
             dstPort = port;
-            msgToServer = msgTo;;
+            msgToServer = msgTo;
         }
 
         @Override
@@ -100,6 +88,14 @@ public class client1start extends Activity {
                 }
 
                 response = dataInputStream.readUTF();
+
+                if (response == "true") {   // If connection activated
+                    Intent startClientSelect = new Intent(ClientConnect.this, ClientSelect.class);
+                    startActivity(startClientSelect);
+                }
+                else {
+                    // Connection failed
+                }
 
             } catch (UnknownHostException e) {
                 // TODO Auto-generated catch block
